@@ -1,0 +1,62 @@
+<div class="bg-primary m-5 p-5">
+    <h1>Employee List component</h1>
+    
+    <div class="d-flex justify-content-between">
+      <button class="btn btn-success" (click)="goToAddEmployee()">Add New Employee</button>
+      <button class="btn btn-danger" (click)="Logout()">Logout</button>
+    </div>
+    <hr>
+
+    <input type="text" placeholder="searchbyname"  (input)="onInputChange($event)" />
+   
+    <div>
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">NAME</th>
+                <th scope="col">Department</th>
+                <th scope="col">Salary</th>
+                <th scope="col">Age</th>
+                <th scope="col">Address</th>
+                <th scope="col">Weather Data</th>
+                <th scope="col">DELETE</th>
+                <th scope="col">UPDATE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let employee of filterData">
+                <td >{{employee.id}}</td>
+                <td>{{employee.name}}</td>
+                <td>{{employee.dept}}</td>
+                <td>{{employee.salary}}</td>
+                <td>{{employee.age}}</td>
+                <td>{{employee.address}}</td>
+                <td><button (click)="fetchWeatherForEmployees(employee.address)" class="btn btn-success">Show Weather</button></td>
+                <td><button (click)="deleteEmployeeById(employee.id)" class="btn btn-danger">Delete</button></td>
+                <td><button (click)="updateEmployee(employee)" class="btn btn-primary">Update</button></td>
+
+              </tr>
+             
+            </tbody>
+          </table>
+
+    </div>
+
+    </div>
+
+    <div *ngIf=isUpdate class="bg-primary m-5 p-5 ">
+      <h3>Update Employee:</h3>
+      <form (ngSubmit)="updateEmployeeSubmit()">      >
+          id:<input type="number" [(ngModel)]="employeeUpdate.id" name="eId" disabled>
+          Name:<input type="text" [(ngModel)]="employeeUpdate.name" name="eName" required>
+        
+          Dept:<input type="text" [(ngModel)]="employeeUpdate.dept" name="dept" required>
+          Salary:<input type="number" [(ngModel)]="employeeUpdate.salary" name="salary" required>
+          Age:<input type="number" [(ngModel)]="employeeUpdate.age" name="age" required>
+          Address:<input type="text" [(ngModel)]="employeeUpdate.address" name="address" required>
+          <input type="submit" value="Update Employee">
+      </form>
+    </div>
+    
+

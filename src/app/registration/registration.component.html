@@ -1,0 +1,24 @@
+<!-- registration.component.html -->
+
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="registration-form">
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" formControlName="email" class="form-control" placeholder="Enter your email" required>
+      <div *ngIf="registrationForm.get('email') && registrationForm.get('email')!.invalid && registrationForm.get('email')!.touched" class="error-message">
+        Please enter a valid email address.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" formControlName="password" class="form-control" placeholder="Enter your password" required>
+      <div *ngIf="registrationForm.get('password') && registrationForm.get('password')!.invalid && registrationForm.get('password')!.touched" class="error-message">
+        Password must be at least 8 characters long.
+      </div>
+    </div>
+    <button type="submit" [disabled]="registrationForm.invalid" class="btn btn-primary m-1 p-2">Register</button>
+    
+  </form>
+  
+  
+  
+  
